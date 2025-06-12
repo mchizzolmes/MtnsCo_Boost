@@ -36,7 +36,7 @@
         "custom_liquid_fkE4WK": {
           "type": "custom_liquid",
           "settings": {
-            "custom_liquid": "<h6 style=\"margin-bottom:20px; font-size:100%;\">Stay cool and stylish with our {{ product.metafields.custom.mountain.value }} Trucker Hat—an adventure-ready essential designed for sunny days and mountain vibes.</h6>\n\n<ul style=\"font-size:16px; line-height:20px;\">\n<li><strong>Structured Design: </strong>Six-panel construction with solid front panels for a classic, structured fit.</li><li><strong>Breathable & Cool:</strong> Mesh back for more airflow, perfect for warm weather.</li>\n<li><strong>Adjustable Fit:</strong> Plastic snap closure to customize your fit. Looks great on every head.</li>\n<li><strong>Official Resort Wear:</strong> Features the authentic {{ product.metafields.custom.mountain.value }} logo.</li>\n</ul>\n\n<style>\nul {\n   margin-bottom:20px;\n}\n\nli { \n   margin-bottom:8px;\n}\n</style>"
+            "custom_liquid": "<h6 style=\"margin-bottom:20px; font-size:100%;\">{{ product.metafields.object.product_type.short_description.value }}</h6>\n\n<ul style=\"font-size:16px; line-height:20px;\">\n<li><strong>Structured Design: </strong>Six-panel construction with solid front panels for a classic, structured fit.</li><li><strong>Breathable & Cool:</strong> Mesh back for more airflow, perfect for warm weather.</li>\n<li><strong>Adjustable Fit:</strong> Plastic snap closure to customize your fit. Looks great on every head.</li>\n<li><strong>Official Resort Wear:</strong> Features the authentic {{ product.metafields.custom.mountain.value }} logo.</li>\n</ul>\n\n<style>\nul {\n   margin-bottom:20px;\n}\n\nli { \n   margin-bottom:8px;\n}\n</style>"
           }
         },
         "accordion_LHzM9z": {
