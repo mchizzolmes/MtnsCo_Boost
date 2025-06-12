@@ -39,18 +39,6 @@
             "custom_liquid": "{% assign product_specs = product.metafields.object.product_type.value %}\n\n{% assign mountain-resort = product.metafields.object.mountain.value %}\n\n{% assign resort-title = mountain-resort.mountain.value | prepend: 'the ' | append: ' logo' %}\n\n<p style=\"margin-bottom:20px; line-height:1.3;\">{{ product_specs.short_description.value }}</p>\n\n<ul style=\"font-size:16px; line-height:20px;\">\n{% assign bullets = product_specs.bullet_points.value %}\n\n{% for bullet in bullets %}\n{% assign bullet-segments = bullet | split: ':' %}\n<li><strong>{{ bullet-segments[0] }}:</strong>{{ bullet-segments[1] | replace: 'your favorite resort logo', resort-title }}</li>\n{% endfor %}\n</ul>\n\n<style>\nul {\n   margin-bottom:20px;\n}\n\nli { \n   margin-bottom:8px;\n}\n</style>"
           }
         },
-        "accordion_LHzM9z": {
-          "type": "accordion",
-          "disabled": true,
-          "settings": {
-            "title": "Size Chart",
-            "icon": "ruler",
-            "content": "",
-            "page": "",
-            "open": false,
-            "full_width": false
-          }
-        },
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
@@ -85,7 +73,6 @@
         "title_and_price",
         "d258cdc0-13a3-49ca-afca-27a58bc44e24",
         "custom_liquid_fkE4WK",
-        "accordion_LHzM9z",
         "variant_picker",
         "buy_buttons",
         "complementary_6tyeaA"
@@ -108,12 +95,12 @@
         "p em {font-size: 16px; font-weight: 600;}"
       ],
       "settings": {
-        "image": "{{ product.metafields.custom.media_1.value }}",
+        "image": "{{ product.metafields.object.product_type.value.featured_image.value }}",
         "image_link": "",
         "image_size": "30",
         "image_position": "left",
-        "title": "The Hat You Could Wear Every Day",
-        "text": "<p>Our {{ product.metafields.custom.mountain.value }} Ski Resort Logo Trucker Hat is your go-to for comfort and style. This six-panel trucker cap is crafted from a premium blend of 60% cotton and 40% polyester, providing a soft yet durable feel that’s perfect for everyday. The solid front panels keep the hat looking sharp, while the mid-profile fit ensures it sits just right on your head.</p><p>The mesh back design adds detail and keeps your head cool and comfortable, making it ideal for those long summer days in the sun. The adjustable plastic snap closure offers a custom fit, accommodating a variety of head sizes. The Permacurv® visor, complete with a matching undervisor.</p><p>Adorned with the iconic {{ product.metafields.custom.mountain.value }} ski resort logo, this hat is more than just an accessory; it’s a statement of your love for the mountains and the adventurous spirit they inspire. </p>",
+        "title": "{{ product.metafields.object.product_type.value.excerpt.value }}",
+        "text": "",
         "button_label": "",
         "button_link": "",
         "url_style": "button_1",
