@@ -90,10 +90,7 @@
     },
     "image_with_text_dRXqF8": {
       "type": "image-with-text",
-      "custom_css": [
-        "p {font-size: 18px;}",
-        "p em {font-size: 16px; font-weight: 600;}"
-      ],
+      "custom_css": [],
       "settings": {
         "image": "{{ product.metafields.object.product_type.value.featured_image.value }}",
         "image_link": "",
