@@ -100,7 +100,7 @@
         "image_size": "30",
         "image_position": "left",
         "title": "{{ product.metafields.object.product_type.value.excerpt.value }}",
-        "text": "",
+        "text": "<p>{{ product.metafields.object.product_type.value.description | metafield_tag }}</p>",
         "button_label": "",
         "button_link": "",
         "url_style": "button_1",
