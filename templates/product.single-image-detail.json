@@ -1,0 +1,136 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title_and_price": {
+          "type": "title_and_price",
+          "settings": {
+            "show_tax_and_shipping": false
+          }
+        },
+        "d258cdc0-13a3-49ca-afca-27a58bc44e24": {
+          "type": "shopify://apps/loox-reviews/blocks/loox-rating/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+          "settings": {
+            "contentSize": 16,
+            "pattern": "",
+            "hideText": false,
+            "alignment": "",
+            "layout": "",
+            "textColor": "",
+            "starColor": "",
+            "showAllReviews": false,
+            "looxOpenFloatingWidget": false,
+            "emptyRatingWidget": false
+          }
+        },
+        "custom_liquid_fkE4WK": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% assign product_specs = product.metafields.object.product_type.value %}\n\n{% assign mountain-resort = product.metafields.object.mountain.value %}\n\n{% assign resort-title = mountain-resort.mountain.value | prepend: 'the ' | append: ' logo' %}\n\n<p style=\"margin-bottom:20px; line-height:1.3;\">{{ product_specs.short_description.value }}</p>\n\n<ul style=\"font-size:16px; line-height:20px;\">\n{% assign bullets = product_specs.bullet_points.value %}\n\n{% for bullet in bullets %}\n{% assign bullet-segments = bullet | split: ':' %}\n<li><strong>{{ bullet-segments[0] }}:</strong>{{ bullet-segments[1] | replace: 'your favorite resort logo', resort-title }}</li>\n{% endfor %}\n</ul>\n\n<style>\nul {\n   margin-bottom:20px;\n}\n\nli { \n   margin-bottom:8px;\n}\n</style>"
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "size_chart_enabled": false,
+            "size_chart_option_name": "Size",
+            "size_chart_page_id": ""
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_quantity_selector": true,
+            "enable_payment_button": true,
+            "show_gift_card_recipient": true,
+            "show_pickup_availability": true,
+            "show_backorder_text": true,
+            "show_inventory_notice": "never",
+            "show_inventory_count": "low",
+            "inventory_notice_threshold": 10
+          }
+        },
+        "complementary_6tyeaA": {
+          "type": "complementary",
+          "settings": {
+            "block_heading": "Other {{ product.metafields.custom.mountain.value }} Products",
+            "enable_carousel": true,
+            "max_products": 4
+          }
+        }
+      },
+      "block_order": [
+        "title_and_price",
+        "d258cdc0-13a3-49ca-afca-27a58bc44e24",
+        "custom_liquid_fkE4WK",
+        "variant_picker",
+        "buy_buttons",
+        "complementary_6tyeaA"
+      ],
+      "custom_css": [
+        ".product-detail__title {margin-bottom: 10px;}",
+        ".theme-money {font-size: 24px;}"
+      ],
+      "settings": {
+        "enable_sticky_media": true,
+        "media_size": "small",
+        "media_layout": "thumbnails-below",
+        "enable_video_looping": false
+      }
+    },
+    "image_with_text_dRXqF8": {
+      "type": "image-with-text",
+      "custom_css": [],
+      "settings": {
+        "image": "{{ product.metafields.object.product_type.value.featured_image.value }}",
+        "image_link": "",
+        "image_size": "30",
+        "image_position": "left",
+        "title": "{{ product.metafields.object.product_type.value.excerpt.value }}",
+        "text": "<p>{{ product.metafields.object.product_type.value.description | metafield_tag }}</p>",
+        "button_label": "",
+        "button_link": "",
+        "url_style": "button_1",
+        "enlarge_title": false,
+        "enlarge_text": false,
+        "text_alignment": "center",
+        "color_text": "#333333",
+        "color_bg": "#dae4e6",
+        "gradient_bg": ""
+      }
+    },
+    "recommendations": {
+      "type": "product-recommendations",
+      "disabled": true,
+      "settings": {
+        "show_product_recommendations": true,
+        "title": "You may also like",
+        "grid": 4,
+        "show_vendor": false
+      }
+    },
+    "recent": {
+      "type": "recently-viewed",
+      "settings": {
+        "show_recently_viewed": true,
+        "show_vendor": false
+      }
+    }
+  },
+  "order": [
+    "main",
+    "image_with_text_dRXqF8",
+    "recommendations",
+    "recent"
+  ]
+}
