@@ -1,0 +1,370 @@
+{% comment %}
+  Dynamic Content Section
+  Adapts layout based on number of images (1-4) and text length
+  Uses CSS Grid for responsive flow
+{% endcomment %}
+
+{%- liquid
+  assign text_content = section.settings.text_content
+  assign text_length = text_content.size
+  
+  # Build images array from individual settings
+  assign images = ''
+  assign image_count = 0
+  
+  if section.settings.image_1 != blank
+    assign images = images | append: section.settings.image_1.id | append: ','
+    assign image_count = image_count | plus: 1
+  endif
+  if section.settings.image_2 != blank
+    assign images = images | append: section.settings.image_2.id | append: ','
+    assign image_count = image_count | plus: 1
+  endif
+  if section.settings.image_3 != blank
+    assign images = images | append: section.settings.image_3.id | append: ','
+    assign image_count = image_count | plus: 1
+  endif
+  if section.settings.image_4 != blank
+    assign images = images | append: section.settings.image_4.id | append: ','
+    assign image_count = image_count | plus: 1
+  endif
+  
+  # Calculate layout classes based on content
+  assign layout_class = 'layout-default'
+  if image_count == 1
+    if text_length > 600
+      assign layout_class = 'layout-single-text-heavy'
+    else
+      assign layout_class = 'layout-single-balanced'
+    endif
+  elsif image_count == 2
+    if text_length > 600
+      assign layout_class = 'layout-dual-text-heavy'
+    else
+      assign layout_class = 'layout-dual-balanced'
+    endif
+  elsif image_count >= 3
+    assign layout_class = 'layout-gallery'
+  endif
+-%}
+
+<section class="dynamic-content-section section{% if section.settings.spacing_top %} large-section{% endif %}">
+  <div class="page-width">
+    
+    {%- if section.settings.section_title != blank -%}
+      <div class="dynamic-content__header">
+        <h2 class="dynamic-content__title large-title">{{ section.settings.section_title }}</h2>
+      </div>
+    {%- endif -%}
+
+    <div class="dynamic-content {{ layout_class }}" data-image-count="{{ image_count }}" data-text-length="{{ text_length }}">
+      
+      {%- if text_content != blank -%}
+        <div class="dynamic-content__text">
+          <div class="rte">
+            {{ text_content }}
+          </div>
+        </div>
+      {%- endif -%}
+
+      {%- if image_count > 0 -%}
+        <div class="dynamic-content__images" data-count="{{ image_count }}">
+          {%- if section.settings.image_1 != blank -%}
+            <div class="dynamic-content__image-wrapper" data-index="1">
+              <div class="rimage-outer-wrapper global-border-radius">
+                <div class="rimage-wrapper" style="padding-top: {{ 1 | divided_by: section.settings.image_1.aspect_ratio | times: 100 }}%">
+                  <img 
+                    class="rimage__image" 
+                    src="{{ section.settings.image_1 | image_url: width: 800 }}"
+                    alt="{{ section.settings.image_1.alt | escape }}"
+                    loading="lazy"
+                    width="{{ section.settings.image_1.width }}"
+                    height="{{ section.settings.image_1.height }}"
+                  >
+                </div>
+              </div>
+            </div>
+          {%- endif -%}
+          
+          {%- if section.settings.image_2 != blank -%}
+            <div class="dynamic-content__image-wrapper" data-index="2">
+              <div class="rimage-outer-wrapper global-border-radius">
+                <div class="rimage-wrapper" style="padding-top: {{ 1 | divided_by: section.settings.image_2.aspect_ratio | times: 100 }}%">
+                  <img 
+                    class="rimage__image" 
+                    src="{{ section.settings.image_2 | image_url: width: 800 }}"
+                    alt="{{ section.settings.image_2.alt | escape }}"
+                    loading="lazy"
+                    width="{{ section.settings.image_2.width }}"
+                    height="{{ section.settings.image_2.height }}"
+                  >
+                </div>
+              </div>
+            </div>
+          {%- endif -%}
+          
+          {%- if section.settings.image_3 != blank -%}
+            <div class="dynamic-content__image-wrapper" data-index="3">
+              <div class="rimage-outer-wrapper global-border-radius">
+                <div class="rimage-wrapper" style="padding-top: {{ 1 | divided_by: section.settings.image_3.aspect_ratio | times: 100 }}%">
+                  <img 
+                    class="rimage__image" 
+                    src="{{ section.settings.image_3 | image_url: width: 800 }}"
+                    alt="{{ section.settings.image_3.alt | escape }}"
+                    loading="lazy"
+                    width="{{ section.settings.image_3.width }}"
+                    height="{{ section.settings.image_3.height }}"
+                  >
+                </div>
+              </div>
+            </div>
+          {%- endif -%}
+          
+          {%- if section.settings.image_4 != blank -%}
+            <div class="dynamic-content__image-wrapper" data-index="4">
+              <div class="rimage-outer-wrapper global-border-radius">
+                <div class="rimage-wrapper" style="padding-top: {{ 1 | divided_by: section.settings.image_4.aspect_ratio | times: 100 }}%">
+                  <img 
+                    class="rimage__image" 
+                    src="{{ section.settings.image_4 | image_url: width: 800 }}"
+                    alt="{{ section.settings.image_4.alt | escape }}"
+                    loading="lazy"
+                    width="{{ section.settings.image_4.width }}"
+                    height="{{ section.settings.image_4.height }}"
+                  >
+                </div>
+              </div>
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .dynamic-content-section {
+    --grid-gap: 30px;
+    --border-radius: {{ global_border_radius }}px;
+  }
+
+  .dynamic-content__header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .dynamic-content {
+    display: grid;
+    gap: var(--grid-gap);
+    align-items: start;
+  }
+
+  .dynamic-content__text {
+    order: 1;
+  }
+
+  .dynamic-content__images {
+    order: 2;
+    display: grid;
+    gap: 20px;
+  }
+
+  .dynamic-content__image-wrapper {
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Default Layout - Stacked */
+  .layout-default {
+    grid-template-columns: 1fr;
+  }
+
+  /* Single Image Layouts */
+  .layout-single-balanced {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+
+  .layout-single-balanced .dynamic-content__images {
+    order: 1;
+  }
+
+  .layout-single-balanced .dynamic-content__text {
+    order: 2;
+  }
+
+  .layout-single-text-heavy {
+    grid-template-columns: 2fr 1fr;
+    align-items: start;
+  }
+
+  .layout-single-text-heavy .dynamic-content__images {
+    order: 2;
+  }
+
+  /* Dual Image Layouts */
+  .layout-dual-balanced {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .layout-dual-balanced .dynamic-content__images {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .layout-dual-text-heavy {
+    grid-template-columns: 2fr 1fr;
+  }
+
+  .layout-dual-text-heavy .dynamic-content__images {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  /* Gallery Layout (3-4 images) */
+  .layout-gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .layout-gallery .dynamic-content__images {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+
+  .layout-gallery .dynamic-content__images[data-count="3"] {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .layout-gallery .dynamic-content__images[data-count="4"] {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .dynamic-content-section {
+      --grid-gap: 20px;
+    }
+
+    .dynamic-content {
+      grid-template-columns: 1fr !important;
+    }
+
+    .dynamic-content__text {
+      order: 1 !important;
+    }
+
+    .dynamic-content__images {
+      order: 2 !important;
+      grid-template-columns: 1fr !important;
+      gap: 15px;
+    }
+
+    .layout-gallery .dynamic-content__images[data-count="3"],
+    .layout-gallery .dynamic-content__images[data-count="4"] {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .layout-gallery .dynamic-content__images {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Enhanced styling for better visual hierarchy */
+  .dynamic-content__text .rte > *:first-child {
+    margin-top: 0;
+  }
+
+  .dynamic-content__text .rte > *:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Image aspect ratio and positioning */
+  .dynamic-content__image-wrapper .rimage__image {
+    object-fit: cover;
+    object-position: center;
+  }
+
+  /* Special handling for single large images */
+  .layout-single-balanced .dynamic-content__image-wrapper,
+  .layout-single-text-heavy .dynamic-content__image-wrapper {
+    min-height: 300px;
+  }
+
+  /* Gallery grid optimizations */
+  .layout-gallery .dynamic-content__images[data-count="3"] .dynamic-content__image-wrapper:first-child {
+    grid-column: span 2;
+  }
+
+  .layout-gallery .dynamic-content__images[data-count="4"] .dynamic-content__image-wrapper:first-child {
+    grid-column: span 2;
+  }
+
+  @media (min-width: 769px) {
+    .layout-gallery .dynamic-content__images[data-count="4"] {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .layout-gallery .dynamic-content__images[data-count="4"] .dynamic-content__image-wrapper:first-child {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Dynamic Content",
+  "tag": "section",
+  "class": "section-dynamic-content",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "info": "Optional title for the section"
+    },
+    {
+      "type": "richtext",
+      "id": "text_content",
+      "label": "Text Content",
+      "info": "Rich text content that will flow around images"
+    },
+    {
+      "type": "header",
+      "content": "Images (1-4)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Image 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_4",
+      "label": "Image 4"
+    },
+    {
+      "type": "checkbox",
+      "id": "spacing_top",
+      "label": "Add top spacing",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dynamic Content"
+    }
+  ]
+}
+{% endschema %}
