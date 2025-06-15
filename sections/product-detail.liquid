@@ -67,6 +67,8 @@ Styles are handled separately to avoid theme update conflicts
               <figure class="image-wrapper">
                 <img src="{{ images[image_index] | image_url: width: 600 }}" 
                      alt="{{ mountain_name }}"
+                     width="600"
+                     height="400"
                      loading="lazy"
                      class="responsive-image">
               </figure>
@@ -77,7 +79,11 @@ Styles are handled separately to avoid theme update conflicts
             {% unless paragraphs[text_index] == blank %}
               <div class="content-block content-block--text" data-position="{{ i }}">
                 <div class="text-content">
-                  {{ paragraphs[text_index] }}{% unless paragraphs[text_index] contains '</p>' %}</p>{% endunless %}
+                  {% if paragraphs[text_index] contains '</p>' %}
+                    {{ paragraphs[text_index] }}
+                  {% else %}
+                    {{ paragraphs[text_index] }}</p>
+                  {% endif %}
                 </div>
               </div>
             {% endunless %}
