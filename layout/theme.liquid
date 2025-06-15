@@ -1,7 +1,7 @@
 <!doctype html>
 <html class="no-js supports-no-cookies" lang="{{ request.locale.iso_code }}">
 <head>
-  <!-- Boost 6.2.2 -->
+  <!-- Boost 6.2.4 -->
   {% render 'head-tag' %}
 
   {% capture seo_title %}
@@ -115,7 +115,7 @@
   {{ content_for_header }}
 
   {%- if request.design_mode -%}
-    <script src="{{ 'store-info.v1.0.0.js' | asset_url }}" defer="defer" data-theme="Boost" data-version="6.2.2" data-contact="{{ shop.email | escape }}"></script>
+    <script src="{{ 'store-info.v1.0.0.js' | asset_url }}" defer="defer" data-theme="Boost" data-version="6.2.4" data-contact="{{ shop.email | escape }}"></script>
   {%- endif -%}
 </head>
 

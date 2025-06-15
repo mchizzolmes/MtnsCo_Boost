@@ -386,7 +386,7 @@
 .pswp__button,
 .pswp__button--arrow--left:before,
 .pswp__button--arrow--right:before {
-    background: url(//mtns.co/cdn/shop/t/24/assets/photoswipe-default-skin.png?v=115405504031309184941726249298) 0 0 no-repeat;
+    background: url(//mtns.co/cdn/shop/t/28/assets/photoswipe-default-skin.png?v=115405504031309184941749988558) 0 0 no-repeat;
   background-size: 264px 88px;
   width: 44px;
   height: 44px;
@@ -397,7 +397,7 @@
   .pswp--svg .pswp__button,
   .pswp--svg .pswp__button--arrow--left:before,
   .pswp--svg .pswp__button--arrow--right:before {
-        background-image: url(//mtns.co/cdn/shop/t/24/assets/photoswipe-default-skin.svg?v=153845424322445325761726249298);
+        background-image: url(//mtns.co/cdn/shop/t/28/assets/photoswipe-default-skin.svg?v=153845424322445325761749988558);
   }
   .pswp--svg .pswp__button--arrow--left,
   .pswp--svg .pswp__button--arrow--right {
@@ -702,7 +702,7 @@ a.pswp__share--download:hover {
 
 .pswp__preloader--active .pswp__preloader__icn {
   /* We use .gif in browsers that don't support CSS animation */
-      background: url(//mtns.co/cdn/shop/t/24/assets/preloader.gif?v=77008736554601496081726249298) 0 0 no-repeat;
+      background: url(//mtns.co/cdn/shop/t/28/assets/preloader.gif?v=77008736554601496081749988558) 0 0 no-repeat;
 }
 
 .pswp--css_animation .pswp__preloader--active {
@@ -1002,7 +1002,7 @@ a.pswp__share--download:hover {
 
 /* Slider */
 .slick-loading .slick-list {
-    background: #fff url(//mtns.co/cdn/shop/t/24/assets/preloader.gif?v=77008736554601496081726249298) center center no-repeat;
+    background: #fff url(//mtns.co/cdn/shop/t/28/assets/preloader.gif?v=77008736554601496081749988558) center center no-repeat;
 }
 
 /* Arrows */
