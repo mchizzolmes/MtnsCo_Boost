@@ -1,33 +1,33 @@
 {% comment %}
-  Dynamic Content Section
-  Adapts layout based on number of images (1-4) and text length
-  Uses CSS Grid for responsive flow
+  Dynamic Content Section - Flexible Field Mapping
+  Each field can be populated from metaobjects, metafields, or manual input
+  Uses Shopify's dynamic sources feature
 {% endcomment %}
 
 {%- liquid
+  # Get content from section settings (can be dynamic sources or manual)
   assign text_content = section.settings.text_content
-  assign text_length = text_content.size
+  assign image_1 = section.settings.image_1
+  assign image_2 = section.settings.image_2
+  assign image_3 = section.settings.image_3
+  assign image_4 = section.settings.image_4
   
-  # Build images array from individual settings
-  assign images = ''
+  # Count images
   assign image_count = 0
+  if image_1 != blank
+    assign image_count = image_count | plus: 1
+  endif
+  if image_2 != blank
+    assign image_count = image_count | plus: 1
+  endif
+  if image_3 != blank
+    assign image_count = image_count | plus: 1
+  endif
+  if image_4 != blank
+    assign image_count = image_count | plus: 1
+  endif
   
-  if section.settings.image_1 != blank
-    assign images = images | append: section.settings.image_1.id | append: ','
-    assign image_count = image_count | plus: 1
-  endif
-  if section.settings.image_2 != blank
-    assign images = images | append: section.settings.image_2.id | append: ','
-    assign image_count = image_count | plus: 1
-  endif
-  if section.settings.image_3 != blank
-    assign images = images | append: section.settings.image_3.id | append: ','
-    assign image_count = image_count | plus: 1
-  endif
-  if section.settings.image_4 != blank
-    assign images = images | append: section.settings.image_4.id | append: ','
-    assign image_count = image_count | plus: 1
-  endif
+  assign text_length = text_content.size
   
   # Calculate layout classes based on content
   assign layout_class = 'layout-default'
@@ -48,6 +48,7 @@
   endif
 -%}
 
+{%- if text_content != blank or image_count > 0 -%}
 <section class="dynamic-content-section section{% if section.settings.spacing_top %} large-section{% endif %}">
   <div class="page-width">
     
@@ -69,68 +70,68 @@
 
       {%- if image_count > 0 -%}
         <div class="dynamic-content__images" data-count="{{ image_count }}">
-          {%- if section.settings.image_1 != blank -%}
+          {%- if image_1 != blank -%}
             <div class="dynamic-content__image-wrapper" data-index="1">
               <div class="rimage-outer-wrapper global-border-radius">
-                <div class="rimage-wrapper" style="padding-top: {{ 1 | divided_by: section.settings.image_1.aspect_ratio | times: 100 }}%">
+                <div class="rimage-wrapper" style="padding-top: {{ 1 | divided_by: image_1.aspect_ratio | times: 100 }}%">
                   <img 
                     class="rimage__image" 
-                    src="{{ section.settings.image_1 | image_url: width: 800 }}"
-                    alt="{{ section.settings.image_1.alt | escape }}"
+                    src="{{ image_1 | image_url: width: 800 }}"
+                    alt="{{ image_1.alt | escape }}"
                     loading="lazy"
-                    width="{{ section.settings.image_1.width }}"
-                    height="{{ section.settings.image_1.height }}"
+                    width="{{ image_1.width }}"
+                    height="{{ image_1.height }}"
                   >
                 </div>
               </div>
             </div>
           {%- endif -%}
           
-          {%- if section.settings.image_2 != blank -%}
+          {%- if image_2 != blank -%}
             <div class="dynamic-content__image-wrapper" data-index="2">
               <div class="rimage-outer-wrapper global-border-radius">
-                <div class="rimage-wrapper" style="padding-top: {{ 1 | divided_by: section.settings.image_2.aspect_ratio | times: 100 }}%">
+                <div class="rimage-wrapper" style="padding-top: {{ 1 | divided_by: image_2.aspect_ratio | times: 100 }}%">
                   <img 
                     class="rimage__image" 
-                    src="{{ section.settings.image_2 | image_url: width: 800 }}"
-                    alt="{{ section.settings.image_2.alt | escape }}"
+                    src="{{ image_2 | image_url: width: 800 }}"
+                    alt="{{ image_2.alt | escape }}"
                     loading="lazy"
-                    width="{{ section.settings.image_2.width }}"
-                    height="{{ section.settings.image_2.height }}"
+                    width="{{ image_2.width }}"
+                    height="{{ image_2.height }}"
                   >
                 </div>
               </div>
             </div>
           {%- endif -%}
           
-          {%- if section.settings.image_3 != blank -%}
+          {%- if image_3 != blank -%}
             <div class="dynamic-content__image-wrapper" data-index="3">
               <div class="rimage-outer-wrapper global-border-radius">
-                <div class="rimage-wrapper" style="padding-top: {{ 1 | divided_by: section.settings.image_3.aspect_ratio | times: 100 }}%">
+                <div class="rimage-wrapper" style="padding-top: {{ 1 | divided_by: image_3.aspect_ratio | times: 100 }}%">
                   <img 
                     class="rimage__image" 
-                    src="{{ section.settings.image_3 | image_url: width: 800 }}"
-                    alt="{{ section.settings.image_3.alt | escape }}"
+                    src="{{ image_3 | image_url: width: 800 }}"
+                    alt="{{ image_3.alt | escape }}"
                     loading="lazy"
-                    width="{{ section.settings.image_3.width }}"
-                    height="{{ section.settings.image_3.height }}"
+                    width="{{ image_3.width }}"
+                    height="{{ image_3.height }}"
                   >
                 </div>
               </div>
             </div>
           {%- endif -%}
           
-          {%- if section.settings.image_4 != blank -%}
+          {%- if image_4 != blank -%}
             <div class="dynamic-content__image-wrapper" data-index="4">
               <div class="rimage-outer-wrapper global-border-radius">
-                <div class="rimage-wrapper" style="padding-top: {{ 1 | divided_by: section.settings.image_4.aspect_ratio | times: 100 }}%">
+                <div class="rimage-wrapper" style="padding-top: {{ 1 | divided_by: image_4.aspect_ratio | times: 100 }}%">
                   <img 
                     class="rimage__image" 
-                    src="{{ section.settings.image_4 | image_url: width: 800 }}"
-                    alt="{{ section.settings.image_4.alt | escape }}"
+                    src="{{ image_4 | image_url: width: 800 }}"
+                    alt="{{ image_4.alt | escape }}"
                     loading="lazy"
-                    width="{{ section.settings.image_4.width }}"
-                    height="{{ section.settings.image_4.height }}"
+                    width="{{ image_4.width }}"
+                    height="{{ image_4.height }}"
                   >
                 </div>
               </div>
@@ -142,6 +143,7 @@
     </div>
   </div>
 </section>
+{%- endif -%}
 
 <style>
   .dynamic-content-section {
@@ -328,11 +330,15 @@
       "type": "richtext",
       "id": "text_content",
       "label": "Text Content",
-      "info": "Rich text content that will flow around images"
+      "info": "Rich text content that will flow around images. Click the connect button to pull from metafields or metaobjects."
     },
     {
       "type": "header",
-      "content": "Images (1-4)"
+      "content": "Images"
+    },
+    {
+      "type": "paragraph",
+      "content": "Add 1-4 images. Use the connect button next to each field to pull from metafields, metaobjects, or upload directly."
     },
     {
       "type": "image_picker",
@@ -353,6 +359,10 @@
       "type": "image_picker",
       "id": "image_4",
       "label": "Image 4"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
     },
     {
       "type": "checkbox",
