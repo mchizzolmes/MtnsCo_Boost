@@ -147,7 +147,8 @@
       "name": "Dynamic Content",
       "settings": {
         "section_title": "{{ product.metafields.object.mountain.value.mountain.value }}",
-        "text_content": "{{ product.metafields.object.mountain.value.body_text | metafield_tag }}",
+        "text_content": "<p>{{ product.metafields.object.mountain.value.body_text | metafield_tag }}</p>",
+        "image_1": "shopify://shop_images/ashley-m--pVXOtcybco-unsplash.jpg",
         "spacing_top": true
       }
     }
