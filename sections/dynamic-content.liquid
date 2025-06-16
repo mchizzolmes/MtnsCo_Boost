@@ -1,15 +1,37 @@
 {% comment %}
-  Dynamic Content Section - Block-Based for Image Lists
-  Uses blocks to iterate over metaobject image lists
-  Supports both dynamic sources and manual input
+  Dynamic Content Section - Updated to support metaobject image lists
+  Now pulls image list from section settings and iterates through them
 {% endcomment %}
 
 {%- liquid
   # Get text content from section settings
   assign text_content = section.settings.text_content
   
-  # Count blocks (images)
-  assign image_count = section.blocks.size
+  # Get images from metaobject list or fallback to manual blocks
+  assign images_from_metaobject = section.settings.image_list
+  assign manual_blocks = section.blocks
+  
+  # Determine which image source to use
+  if images_from_metaobject != blank and images_from_metaobject.size > 0
+    assign images_to_use = images_from_metaobject
+    assign using_metaobject = true
+  else
+    assign images_to_use = manual_blocks
+    assign using_metaobject = false
+  endif
+  
+  # Count images
+  if using_metaobject
+    assign image_count = images_to_use.size
+  else
+    assign image_count = 0
+    for block in images_to_use
+      if block.settings.image != blank
+        assign image_count = image_count | plus: 1
+      endif
+    endfor
+  endif
+  
   assign text_length = text_content.size
   
   # Calculate layout classes based on content
@@ -53,30 +75,56 @@
 
       {%- if image_count > 0 -%}
         <div class="dynamic-content__images" data-count="{{ image_count }}">
-          {%- for block in section.blocks -%}
-            {%- if block.settings.image != blank -%}
-              <div class="dynamic-content__image-wrapper" data-index="{{ forloop.index }}" {{ block.shopify_attributes }}>
-                <div class="rimage-outer-wrapper global-border-radius">
-                  <div class="rimage-wrapper" style="padding-top: {{ 1 | divided_by: block.settings.image.aspect_ratio | times: 100 }}%">
-                    <img 
-                      class="rimage__image" 
-                      src="{{ block.settings.image | image_url: width: 800 }}"
-                      alt="{{ block.settings.image.alt | escape }}"
-                      loading="lazy"
-                      width="{{ block.settings.image.width }}"
-                      height="{{ block.settings.image.height }}"
-                    >
+          
+          {%- if using_metaobject -%}
+            {%- comment -%} Iterate through metaobject image list {%- endcomment -%}
+            {%- for image in images_to_use -%}
+              {%- if image != blank -%}
+                <div class="dynamic-content__image-wrapper" data-index="{{ forloop.index }}">
+                  <div class="rimage-outer-wrapper global-border-radius">
+                    <div class="rimage-wrapper" style="padding-top: {{ 1 | divided_by: image.aspect_ratio | times: 100 }}%">
+                      <img 
+                        class="rimage__image" 
+                        src="{{ image | image_url: width: 800 }}"
+                        alt="{{ image.alt | escape }}"
+                        loading="lazy"
+                        width="{{ image.width }}"
+                        height="{{ image.height }}"
+                      >
+                    </div>
                   </div>
                 </div>
-                
-                {%- if block.settings.image_caption != blank -%}
-                  <div class="dynamic-content__image-caption">
-                    {{ block.settings.image_caption }}
+              {%- endif -%}
+            {%- endfor -%}
+            
+          {%- else -%}
+            {%- comment -%} Iterate through manual blocks {%- endcomment -%}
+            {%- for block in manual_blocks -%}
+              {%- if block.settings.image != blank -%}
+                <div class="dynamic-content__image-wrapper" data-index="{{ forloop.index }}" {{ block.shopify_attributes }}>
+                  <div class="rimage-outer-wrapper global-border-radius">
+                    <div class="rimage-wrapper" style="padding-top: {{ 1 | divided_by: block.settings.image.aspect_ratio | times: 100 }}%">
+                      <img 
+                        class="rimage__image" 
+                        src="{{ block.settings.image | image_url: width: 800 }}"
+                        alt="{{ block.settings.image.alt | escape }}"
+                        loading="lazy"
+                        width="{{ block.settings.image.width }}"
+                        height="{{ block.settings.image.height }}"
+                      >
+                    </div>
                   </div>
-                {%- endif -%}
-              </div>
-            {%- endif -%}
-          {%- endfor -%}
+                  
+                  {%- if block.settings.image_caption != blank -%}
+                    <div class="dynamic-content__image-caption">
+                      {{ block.settings.image_caption }}
+                    </div>
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
+            {%- endfor -%}
+          {%- endif -%}
+
         </div>
       {%- endif -%}
 
@@ -281,6 +329,16 @@
     },
     {
       "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "text",
+      "id": "image_list",
+      "label": "Image List",
+      "info": "Connect to a metaobject image list field. This will override manual images below."
+    },
+    {
+      "type": "header",
       "content": "Layout"
     },
     {
@@ -293,14 +351,14 @@
   "blocks": [
     {
       "type": "image",
-      "name": "Image",
+      "name": "Manual Image",
       "limit": 4,
       "settings": [
         {
           "type": "image_picker",
           "id": "image",
           "label": "Image",
-          "info": "Use connect button to pull from metaobject image lists or upload directly"
+          "info": "Manual image - only used if no metaobject image list is connected above"
         },
         {
           "type": "text",
