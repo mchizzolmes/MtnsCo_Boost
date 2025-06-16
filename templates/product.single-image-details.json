@@ -141,23 +141,12 @@
         "show_recently_viewed": true,
         "show_vendor": false
       }
-    },
-    "dynamic_content_Et4niC": {
-      "type": "dynamic-content",
-      "name": "Dynamic Content",
-      "settings": {
-        "section_title": "{{ product.metafields.object.mountain.value.mountain.value }}",
-        "text_content": "<p>{{ product.metafields.object.mountain.value.body_text | metafield_tag }}</p>",
-        "image_1": "shopify://shop_images/ashley-m--pVXOtcybco-unsplash.jpg",
-        "spacing_top": true
-      }
     }
   },
   "order": [
     "main",
     "image_with_text_dRXqF8",
     "recommendations",
-    "recent",
-    "dynamic_content_Et4niC"
+    "recent"
   ]
 }
