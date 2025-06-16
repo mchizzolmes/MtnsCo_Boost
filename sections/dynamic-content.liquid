@@ -1,32 +1,15 @@
 {% comment %}
-  Dynamic Content Section - Flexible Field Mapping
-  Each field can be populated from metaobjects, metafields, or manual input
-  Uses Shopify's dynamic sources feature
+  Dynamic Content Section - Block-Based for Image Lists
+  Uses blocks to iterate over metaobject image lists
+  Supports both dynamic sources and manual input
 {% endcomment %}
 
 {%- liquid
-  # Get content from section settings (can be dynamic sources or manual)
+  # Get text content from section settings
   assign text_content = section.settings.text_content
-  assign image_1 = section.settings.image_1
-  assign image_2 = section.settings.image_2
-  assign image_3 = section.settings.image_3
-  assign image_4 = section.settings.image_4
   
-  # Count images
-  assign image_count = 0
-  if image_1 != blank
-    assign image_count = image_count | plus: 1
-  endif
-  if image_2 != blank
-    assign image_count = image_count | plus: 1
-  endif
-  if image_3 != blank
-    assign image_count = image_count | plus: 1
-  endif
-  if image_4 != blank
-    assign image_count = image_count | plus: 1
-  endif
-  
+  # Count blocks (images)
+  assign image_count = section.blocks.size
   assign text_length = text_content.size
   
   # Calculate layout classes based on content
@@ -70,73 +53,30 @@
 
       {%- if image_count > 0 -%}
         <div class="dynamic-content__images" data-count="{{ image_count }}">
-          {%- if image_1 != blank -%}
-            <div class="dynamic-content__image-wrapper" data-index="1">
-              <div class="rimage-outer-wrapper global-border-radius">
-                <div class="rimage-wrapper" style="padding-top: {{ 1 | divided_by: image_1.aspect_ratio | times: 100 }}%">
-                  <img 
-                    class="rimage__image" 
-                    src="{{ image_1 | image_url: width: 800 }}"
-                    alt="{{ image_1.alt | escape }}"
-                    loading="lazy"
-                    width="{{ image_1.width }}"
-                    height="{{ image_1.height }}"
-                  >
+          {%- for block in section.blocks -%}
+            {%- if block.settings.image != blank -%}
+              <div class="dynamic-content__image-wrapper" data-index="{{ forloop.index }}" {{ block.shopify_attributes }}>
+                <div class="rimage-outer-wrapper global-border-radius">
+                  <div class="rimage-wrapper" style="padding-top: {{ 1 | divided_by: block.settings.image.aspect_ratio | times: 100 }}%">
+                    <img 
+                      class="rimage__image" 
+                      src="{{ block.settings.image | image_url: width: 800 }}"
+                      alt="{{ block.settings.image.alt | escape }}"
+                      loading="lazy"
+                      width="{{ block.settings.image.width }}"
+                      height="{{ block.settings.image.height }}"
+                    >
+                  </div>
                 </div>
+                
+                {%- if block.settings.image_caption != blank -%}
+                  <div class="dynamic-content__image-caption">
+                    {{ block.settings.image_caption }}
+                  </div>
+                {%- endif -%}
               </div>
-            </div>
-          {%- endif -%}
-          
-          {%- if image_2 != blank -%}
-            <div class="dynamic-content__image-wrapper" data-index="2">
-              <div class="rimage-outer-wrapper global-border-radius">
-                <div class="rimage-wrapper" style="padding-top: {{ 1 | divided_by: image_2.aspect_ratio | times: 100 }}%">
-                  <img 
-                    class="rimage__image" 
-                    src="{{ image_2 | image_url: width: 800 }}"
-                    alt="{{ image_2.alt | escape }}"
-                    loading="lazy"
-                    width="{{ image_2.width }}"
-                    height="{{ image_2.height }}"
-                  >
-                </div>
-              </div>
-            </div>
-          {%- endif -%}
-          
-          {%- if image_3 != blank -%}
-            <div class="dynamic-content__image-wrapper" data-index="3">
-              <div class="rimage-outer-wrapper global-border-radius">
-                <div class="rimage-wrapper" style="padding-top: {{ 1 | divided_by: image_3.aspect_ratio | times: 100 }}%">
-                  <img 
-                    class="rimage__image" 
-                    src="{{ image_3 | image_url: width: 800 }}"
-                    alt="{{ image_3.alt | escape }}"
-                    loading="lazy"
-                    width="{{ image_3.width }}"
-                    height="{{ image_3.height }}"
-                  >
-                </div>
-              </div>
-            </div>
-          {%- endif -%}
-          
-          {%- if image_4 != blank -%}
-            <div class="dynamic-content__image-wrapper" data-index="4">
-              <div class="rimage-outer-wrapper global-border-radius">
-                <div class="rimage-wrapper" style="padding-top: {{ 1 | divided_by: image_4.aspect_ratio | times: 100 }}%">
-                  <img 
-                    class="rimage__image" 
-                    src="{{ image_4 | image_url: width: 800 }}"
-                    alt="{{ image_4.alt | escape }}"
-                    loading="lazy"
-                    width="{{ image_4.width }}"
-                    height="{{ image_4.height }}"
-                  >
-                </div>
-              </div>
-            </div>
-          {%- endif -%}
+            {%- endif -%}
+          {%- endfor -%}
         </div>
       {%- endif -%}
 
@@ -175,6 +115,13 @@
   .dynamic-content__image-wrapper {
     position: relative;
     overflow: hidden;
+  }
+
+  .dynamic-content__image-caption {
+    margin-top: 10px;
+    font-size: 0.875rem;
+    color: {{ color_body_text | color_modify: "alpha", 0.7 }};
+    text-align: center;
   }
 
   /* Default Layout - Stacked */
@@ -330,35 +277,7 @@
       "type": "richtext",
       "id": "text_content",
       "label": "Text Content",
-      "info": "Rich text content that will flow around images. Click the connect button to pull from metafields or metaobjects."
-    },
-    {
-      "type": "header",
-      "content": "Images"
-    },
-    {
-      "type": "paragraph",
-      "content": "Add 1-4 images. Use the connect button next to each field to pull from metafields, metaobjects, or upload directly."
-    },
-    {
-      "type": "image_picker",
-      "id": "image_1",
-      "label": "Image 1"
-    },
-    {
-      "type": "image_picker",
-      "id": "image_2",
-      "label": "Image 2"
-    },
-    {
-      "type": "image_picker",
-      "id": "image_3",
-      "label": "Image 3"
-    },
-    {
-      "type": "image_picker",
-      "id": "image_4",
-      "label": "Image 4"
+      "info": "Rich text content that will flow around images. Click connect to pull from metafields or metaobjects."
     },
     {
       "type": "header",
@@ -371,9 +290,35 @@
       "default": true
     }
   ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "Use connect button to pull from metaobject image lists or upload directly"
+        },
+        {
+          "type": "text",
+          "id": "image_caption",
+          "label": "Caption (Optional)",
+          "info": "Optional caption for this image"
+        }
+      ]
+    }
+  ],
   "presets": [
     {
-      "name": "Dynamic Content"
+      "name": "Dynamic Content",
+      "blocks": [
+        {
+          "type": "image"
+        }
+      ]
     }
   ]
 }
