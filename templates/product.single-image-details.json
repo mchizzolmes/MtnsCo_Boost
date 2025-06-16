@@ -1,1 +1,162 @@
-{"sections":{"main":{"type":"main-product","blocks":{"title_and_price":{"type":"title_and_price","settings":{"show_tax_and_shipping":false}},"d258cdc0-13a3-49ca-afca-27a58bc44e24":{"type":"shopify:\/\/apps\/loox-reviews\/blocks\/loox-rating\/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e","settings":{"contentSize":16,"pattern":"","hideText":false,"alignment":"","layout":"","textColor":"","starColor":"","showAllReviews":false,"looxOpenFloatingWidget":false,"emptyRatingWidget":false}},"custom_liquid_fkE4WK":{"type":"custom_liquid","settings":{"custom_liquid":"<h6 style=\"margin-bottom:20px; font-size:100%;\">Stay cool and stylish with our {{ product.metafields.custom.mountain.value }} Trucker Hat—an adventure-ready essential designed for sunny days and mountain vibes.<\/h6>\n\n<ul style=\"font-size:16px; line-height:20px;\">\n<li><strong>Structured Design: <\/strong>Six-panel construction with solid front panels for a classic, structured fit.<\/li><li><strong>Breathable & Cool:<\/strong> Mesh back for more airflow, perfect for warm weather.<\/li>\n<li><strong>Adjustable Fit:<\/strong> Plastic snap closure to customize your fit. Looks great on every head.<\/li>\n<li><strong>Official Resort Wear:<\/strong> Features the authentic {{ product.metafields.custom.mountain.value }} logo.<\/li>\n<\/ul>\n\n<style>\nul {\n   margin-bottom:20px;\n}\n\nli { \n   margin-bottom:8px;\n}\n<\/style>"}},"accordion_LHzM9z":{"type":"accordion","disabled":true,"settings":{"title":"Size Chart","icon":"ruler","content":"","page":"","open":false,"full_width":false}},"variant_picker":{"type":"variant_picker","settings":{"size_chart_enabled":false,"size_chart_option_name":"Size","size_chart_page_id":""}},"buy_buttons":{"type":"buy_buttons","settings":{"show_quantity_selector":true,"enable_payment_button":true,"show_gift_card_recipient":true,"show_pickup_availability":true,"show_backorder_text":true,"show_inventory_notice":"never","show_inventory_count":"low","inventory_notice_threshold":10}},"complementary_6tyeaA":{"type":"complementary","settings":{"block_heading":"Other {{ product.metafields.custom.mountain.value }} Products","enable_carousel":true,"max_products":4}}},"block_order":["title_and_price","d258cdc0-13a3-49ca-afca-27a58bc44e24","custom_liquid_fkE4WK","accordion_LHzM9z","variant_picker","buy_buttons","complementary_6tyeaA"],"custom_css":[".product-detail__title {margin-bottom: 10px;}",".theme-money {font-size: 24px;}"],"settings":{"enable_sticky_media":true,"media_size":"small","media_layout":"thumbnails-below","enable_video_looping":false}},"image_with_text_dRXqF8":{"type":"image-with-text","custom_css":["p {font-size: 18px;}","p em {font-size: 16px; font-weight: 600;}"],"settings":{"image":"{{ product.metafields.custom.media_1.value }}","image_link":"","image_size":"30","image_position":"left","title":"The Hat You Could Wear Every Day","text":"<p>Our {{ product.metafields.custom.mountain.value }} Ski Resort Logo Trucker Hat is your go-to for comfort and style. This six-panel trucker cap is crafted from a premium blend of 60% cotton and 40% polyester, providing a soft yet durable feel that’s perfect for everyday. The solid front panels keep the hat looking sharp, while the mid-profile fit ensures it sits just right on your head.<\/p><p>The mesh back design adds detail and keeps your head cool and comfortable, making it ideal for those long summer days in the sun. The adjustable plastic snap closure offers a custom fit, accommodating a variety of head sizes. The Permacurv® visor, complete with a matching undervisor.<\/p><p>Adorned with the iconic {{ product.metafields.custom.mountain.value }} ski resort logo, this hat is more than just an accessory; it’s a statement of your love for the mountains and the adventurous spirit they inspire. <\/p>","button_label":"","button_link":"","url_style":"button_1","enlarge_title":false,"enlarge_text":false,"text_alignment":"center","color_text":"#333333","color_bg":"#dae4e6","gradient_bg":""}},"recommendations":{"type":"product-recommendations","disabled":true,"settings":{"show_product_recommendations":true,"title":"You may also like","grid":4,"show_vendor":false}},"recent":{"type":"recently-viewed","settings":{"show_recently_viewed":true,"show_vendor":false}}},"order":["main","image_with_text_dRXqF8","recommendations","recent"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title_and_price": {
+          "type": "title_and_price",
+          "settings": {
+            "show_tax_and_shipping": false
+          }
+        },
+        "d258cdc0-13a3-49ca-afca-27a58bc44e24": {
+          "type": "shopify://apps/loox-reviews/blocks/loox-rating/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+          "settings": {
+            "contentSize": 16,
+            "pattern": "",
+            "hideText": false,
+            "alignment": "",
+            "layout": "",
+            "textColor": "",
+            "starColor": "",
+            "showAllReviews": false,
+            "looxOpenFloatingWidget": false,
+            "emptyRatingWidget": false
+          }
+        },
+        "custom_liquid_fkE4WK": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<h6 style=\"margin-bottom:20px; font-size:100%;\">Stay cool and stylish with our {{ product.metafields.custom.mountain.value }} Trucker Hat—an adventure-ready essential designed for sunny days and mountain vibes.</h6>\n\n<ul style=\"font-size:16px; line-height:20px;\">\n<li><strong>Structured Design: </strong>Six-panel construction with solid front panels for a classic, structured fit.</li><li><strong>Breathable & Cool:</strong> Mesh back for more airflow, perfect for warm weather.</li>\n<li><strong>Adjustable Fit:</strong> Plastic snap closure to customize your fit. Looks great on every head.</li>\n<li><strong>Official Resort Wear:</strong> Features the authentic {{ product.metafields.custom.mountain.value }} logo.</li>\n</ul>\n\n<style>\nul {\n   margin-bottom:20px;\n}\n\nli { \n   margin-bottom:8px;\n}\n</style>"
+          }
+        },
+        "accordion_LHzM9z": {
+          "type": "accordion",
+          "disabled": true,
+          "settings": {
+            "title": "Size Chart",
+            "icon": "ruler",
+            "content": "",
+            "page": "",
+            "open": false,
+            "full_width": false
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "size_chart_enabled": false,
+            "size_chart_option_name": "Size",
+            "size_chart_page_id": ""
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_quantity_selector": true,
+            "enable_payment_button": true,
+            "show_gift_card_recipient": true,
+            "show_pickup_availability": true,
+            "show_backorder_text": true,
+            "show_inventory_notice": "never",
+            "show_inventory_count": "low",
+            "inventory_notice_threshold": 10
+          }
+        },
+        "complementary_6tyeaA": {
+          "type": "complementary",
+          "settings": {
+            "block_heading": "Other {{ product.metafields.custom.mountain.value }} Products",
+            "enable_carousel": true,
+            "max_products": 4
+          }
+        }
+      },
+      "block_order": [
+        "title_and_price",
+        "d258cdc0-13a3-49ca-afca-27a58bc44e24",
+        "custom_liquid_fkE4WK",
+        "accordion_LHzM9z",
+        "variant_picker",
+        "buy_buttons",
+        "complementary_6tyeaA"
+      ],
+      "custom_css": [
+        ".product-detail__title {margin-bottom: 10px;}",
+        ".theme-money {font-size: 24px;}"
+      ],
+      "settings": {
+        "enable_sticky_media": true,
+        "media_size": "small",
+        "media_layout": "thumbnails-below",
+        "enable_video_looping": false
+      }
+    },
+    "image_with_text_dRXqF8": {
+      "type": "image-with-text",
+      "custom_css": [
+        "p {font-size: 18px;}",
+        "p em {font-size: 16px; font-weight: 600;}"
+      ],
+      "settings": {
+        "image": "{{ product.metafields.custom.media_1.value }}",
+        "image_link": "",
+        "image_size": "30",
+        "image_position": "left",
+        "title": "The Hat You Could Wear Every Day",
+        "text": "<p>Our {{ product.metafields.custom.mountain.value }} Ski Resort Logo Trucker Hat is your go-to for comfort and style. This six-panel trucker cap is crafted from a premium blend of 60% cotton and 40% polyester, providing a soft yet durable feel that’s perfect for everyday. The solid front panels keep the hat looking sharp, while the mid-profile fit ensures it sits just right on your head.</p><p>The mesh back design adds detail and keeps your head cool and comfortable, making it ideal for those long summer days in the sun. The adjustable plastic snap closure offers a custom fit, accommodating a variety of head sizes. The Permacurv® visor, complete with a matching undervisor.</p><p>Adorned with the iconic {{ product.metafields.custom.mountain.value }} ski resort logo, this hat is more than just an accessory; it’s a statement of your love for the mountains and the adventurous spirit they inspire. </p>",
+        "button_label": "",
+        "button_link": "",
+        "url_style": "button_1",
+        "enlarge_title": false,
+        "enlarge_text": false,
+        "text_alignment": "center",
+        "color_text": "#333333",
+        "color_bg": "#dae4e6",
+        "gradient_bg": ""
+      }
+    },
+    "recommendations": {
+      "type": "product-recommendations",
+      "disabled": true,
+      "settings": {
+        "show_product_recommendations": true,
+        "title": "You may also like",
+        "grid": 4,
+        "show_vendor": false
+      }
+    },
+    "recent": {
+      "type": "recently-viewed",
+      "settings": {
+        "show_recently_viewed": true,
+        "show_vendor": false
+      }
+    },
+    "dynamic_content_Et4niC": {
+      "type": "dynamic-content",
+      "name": "Dynamic Content",
+      "settings": {
+        "section_title": "{{ product.metafields.object.mountain.value.mountain.value }}",
+        "text_content": "{{ product.metafields.object.mountain.value.body_text | metafield_tag }}",
+        "spacing_top": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "image_with_text_dRXqF8",
+    "recommendations",
+    "recent",
+    "dynamic_content_Et4niC"
+  ]
+}
